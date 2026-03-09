@@ -1,7 +1,7 @@
 # Error 1111
 
 ## My understanding
-This error occurs when using an aggregate operator after a `WHERE` clause to filter from a tuple or a subset.
+This error occurs when using an aggregate operator after a `WHERE` clause to filter from a tuple or a subsubgroup.
 
 The solution to this is to use the `HAVING` clause.
 

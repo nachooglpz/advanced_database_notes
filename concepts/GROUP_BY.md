@@ -1,11 +1,11 @@
 # GROUP BY Statement
 
 ## My understanding
-The `GROUP BY` statement allows to create subsets of a relation.
+The `GROUP BY` statement allows to create subsubgroups of a relation.
 
 Each group (partition) will consist of the tuples that have the same value of some attributes (grouping attributes).
 
-The statement also allows to partition by using multidimensional aggregation. When grouping by multiple columns, the subsets generated are based on every possible combination of the attributes stated.
+The statement also allows to partition by using multidimensional aggregation. When grouping by multiple columns, the subsubgroups generated are based on every possible combination of the attributes stated.
 
 
 ## Why it matters

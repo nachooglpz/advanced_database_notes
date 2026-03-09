@@ -1,7 +1,7 @@
 # ERROR 1140
 
 ## My understanding
-This error happens when trying to generate subsets of a relation without defining the subset attribute(s).
+This error happens when trying to generate subsubgroups of a relation without defining the subsubgroup attribute(s).
 
 When a `GROUP BY` clause is used in a query, the aggregate operator must be applied separately to each group of tuples as partitioned by the grouping attribute.
 

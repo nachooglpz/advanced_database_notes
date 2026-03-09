@@ -1,7 +1,7 @@
 # Rollups
 
 ## My understanding
-These allow to generate subtotals and totals for the subsets. It produces a resulting set that incorporates rows at various levels of aggregation.
+These allow to generate subtotals and totals for the subsubgroups. It produces a resulting subgroups that incorporates rows at various levels of aggregation.
 
 When grouping by A, B, C, you would be getting the following groupings with rollup:
 - (A, B, C)

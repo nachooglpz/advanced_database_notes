@@ -1,23 +1,23 @@
 # Aggregate Operators
 
 ## My understanding
-These functions allow to perform operatios over sugroups (or subsets) from a relation.
+These functions allow to perform operatios over sugroups (or subsubgroups) from a relation.
 
 There are 5 basic aggregate operators:
-- `MAX()`: Will return the maximum of a column given the subset.
-- `MIN()`: Wil return the minimum of a colum given the subset.
-- `AVG()`: Will return the average of a column given the subset.
+- `MAX()`: Will return the maximum of a column given the subsubgroup.
+- `MIN()`: Wil return the minimum of a colum given the subsubgroup.
+- `AVG()`: Will return the average of a column given the subsubgroup.
     - For the calculation, the total number of existing elements is used (`NULL`s are ignored).
     - For example, if there are 5 rows, but one contains a `NULL` value on the column where the attribute is stated to the operator, only 4 rows will be counted on the denominator for the average calculation.
-- `SUM()`: Will return the total sum of a colum given the subset.
+- `SUM()`: Will return the total sum of a colum given the subsubgroup.
     - (Obviously) `NULL`s are ignored on the calculation.
-- `COUNT()`: Will return the total elements of a column given the subset.
+- `COUNT()`: Will return the total elements of a column given the subsubgroup.
     - `COUNT(*)` will count every row.
     - `COUNT(column)` will count values (and ignore `NULL`s).
     - `COUNT(DISTINCT column)` will count unique values from the column only.
 
 ## Why it matters
-These operators are useful to create summaries about the subgroups (subsets) from a relation.
+These operators are useful to create summaries about the subgroups (subsubgroups) from a relation.
 
 ## Example
 ```sql
