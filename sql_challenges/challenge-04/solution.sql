@@ -28,6 +28,19 @@ SELECT b.*,
 FROM   bricks b
 ORDER  BY weight;
 
+WITH totals AS (
+  SELECT b.*,
+         SUM ( weight ) OVER (
+           PARTITION BY shape
+         ) weight_per_shape,
+         SUM ( weight ) over (
+            ORDER BY brick_id
+         ) running_weight_by_id
+  FROM   bricks b
+)
+SELECT * FROM totals
+WHERE  weight_per_shape > 4 AND running_weight_by_id > 4
+ORDER  BY brick_id;
 
 -- Top Three Salaries
 WITH ranked_salary AS (
