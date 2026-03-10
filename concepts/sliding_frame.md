@@ -21,6 +21,12 @@ Basic configurations:
 
 -- Historical accumulation (running total)
 UNBOUND PRECEDING AND CURRENT ROW
+
+-- Not counting the current row
+BETWEEN 2 PRECEDING AND 1 PRECEDING
+
+-- Ranges
+RANGE BETWEEN CURRENT ROW AND ONE FOLLOWING
 ```
 
 **Real world application:** The Twitter Rolling Average
