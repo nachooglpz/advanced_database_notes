@@ -92,7 +92,7 @@ Separate transactions:
     - The Oracle system uses the *immediate consideration* model, but allows the user to specify for each rule whether the *before* or *after* option is used with the immediate condition evaluation.
 
     - The STARBUST system uses the *deferred consideration* option, so that all rules triggered by a transaction wait until the triggereing transaction reaches its end.
-        - And issues its `COMMID WORK` command before the rule conditions are evaluated.
+        - And issues its `COMMIT WORK` command before the rule conditions are evaluated.
     
     3. Distinction between *row-level rules* and *statement-level* rules.
 
