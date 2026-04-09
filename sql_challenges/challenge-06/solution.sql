@@ -58,3 +58,61 @@ CREATE TABLE pet_care_log (
     CONSTRAINT prod_id_pcl_fk
         FOREIGN KEY (product_id) REFERENCES product (product_id)
 );
+
+-- Trigger that fires before inserting each row in the PET_CARE_LOG table.
+-- The trigger will assign the current date and time to the UPDATE_DATE column.
+-- It will also assign the current user to the UPDATED_BY_USER column.
+-- The trigger will handle all errors in one general exception handler and send an error message using the RAISE_APPLICATION_ERROR procedure.
+CREATE TRIGGER insert_pet_care_log
+BEFORE INSERT ON pet_care_log
+FOR EACH ROW
+BEGIN
+    :NEW.log_datetime := SYSDATE;
+    :NEW.last_update_datetime := SYSDATE;
+    :NEW.created_by_user := USER;
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Error in insert_pet_care_log trigger: ' || SQLERRM);
+END;
+
+-- Trigger that fires before updating each row of the PET_CARE_LOG Table
+-- The trigger will look at the current user and compare it with the value in the UPDATED_BY_USER column.
+    -- If the 2 are the same, the update proceeds.
+    -- If they are different, the update raises an exception and fails.
+-- The trigger handles any other database errors the same way it did in the insert trigger.
+CREATE TRIGGER update_pet_care_log
+BEFORE UPDATE ON pet_care_log
+FOR EACH ROW
+BEGIN
+    IF :OLD.created_by_user = USER
+    THEN
+        :NEW.last_update_datetime := SYSDATE;
+    ELSE
+        RAISE_APPLICATION_ERROR(-20002, 'User must match CREATED_BY_USER.');
+    END IF;
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(
+            -20001, 'Error in update_pet_care_log trigger: ' || SQLERRM
+        );
+END;
+
+-- Trigger that fires before any row is deleted from the PET_CARE_LOG table.
+-- The trigger looks at the user who is deleting the row.
+    -- If the user is 'JOEMANAGER', the delete continues successfully.
+    -- Otherwise, the delete fails and sends an error message.
+-- The trigger handles any oter database errors the same way it did in the insert trigger.
+CREATE TRIGGER delete_pet_care_log
+BEFORE DELETE ON pet_care_log
+FOR EACH ROW
+BEGIN
+    IF USER != 'JOEMANAGER'
+    THEN
+        RAISE_APPLICATION_ERROR(-20003, 'DELETE User must be JOEMANAGER.');
+    END IF;
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(
+            -20001, 'Error in delete_pet_care_log trigger: ' || SQLERRM
+        );
+END;
