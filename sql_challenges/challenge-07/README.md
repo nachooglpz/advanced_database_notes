@@ -1,0 +1,9 @@
+### Challenge 07
+
+# SQL Challenge 07
+
+## Problem
+1. Choose a Wikipedia article as your dataset
+2. Generate vector embeddings for each paragraph (the "pre-load phase")
+3. Load the vectors into Oracle 23ai on freesql.com
+4. Search the article using natural language — no keyword matching needed
